@@ -41,12 +41,13 @@ const Footer = () => {
                     <div className="col-lg-3 col-md-6 mb-5">
                         <h5 className="text-white text-uppercase mb-4">Our Services</h5>
                         <div className="d-flex flex-column justify-content-start">
-                            <a className="text-white-50 mb-2" href="#"><i className="fa fa-angle-right mr-2"></i>HOME</a>
-                            <a className="text-white-50 mb-2" href="#"><i className="fa fa-angle-right mr-2"></i>OUR COURSES</a>
-                            <a className="text-white-50 mb-2" href="#"><i className="fa fa-angle-right mr-2"></i>ABOUT US</a>
-                            <a className="text-white-50 mb-2" href="#"><i className="fa fa-angle-right mr-2"></i>BLOG</a>
-                            <a className="text-white-50 mb-2" href="#"><i className="fa fa-angle-right mr-2"></i>GET IN TOUCH</a>
-                            <a className="text-white-50 mb-2" href="#"><i className="fa fa-angle-right mr-2"></i>SPOT ROUND</a>
+                            <a className="text-white-50 mb-2" href="/">HOME</a>
+<a className="text-white-50 mb-2" href="/courses">OUR COURSES</a>
+<a className="text-white-50 mb-2" href="/about">ABOUT US</a>
+<a className="text-white-50 mb-2" href="/blog">BLOG</a>
+<a className="text-white-50 mb-2" href="/contact">GET IN TOUCH</a>
+<a className="text-white-50 mb-2" href="/spot-round">SPOT ROUND</a>
+
                         </div>
                     </div>
                     <div className="col-lg-3 col-md-6 mb-5"></div>
