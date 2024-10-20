@@ -11,7 +11,7 @@ function SpotRoundList() {
             if (!collegeId) return;
 
             try {
-                const response = await fetch(`http://localhost:3001/spot_rounds/${collegeId}`);
+                const response = await fetch(`http://localhost:10000/spot_rounds/${collegeId}`);
                 const data = await response.json();
                 if (response.ok) {
                     setSpotRounds(data);

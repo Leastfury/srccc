@@ -1,88 +1,93 @@
-/* Navbar styling */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    z-index: 1000; /* Keep it on top */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.navbar .navbar-brand {
-    color: white;
-    font-size: 24px;
-    text-decoration: none;
-}
-
-.navbar-links {
-    list-style-type: none;
+/* Apply box-sizing to all elements */
+* {
     margin: 0;
     padding: 0;
-    display: flex;
+    box-sizing: border-box; /* Include padding and borders in width/height calculations */
 }
 
-.navbar-links li {
-    margin-left: 20px;
+/* Ensure full width of the viewport and remove any horizontal overflow */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw; /* Full viewport width */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-.navbar-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 5px 10px;
+.container {
+    margin-top: 100px; /* Increased space between header and college names */
 }
 
-.navbar-links a:hover {
-    background-color: #575757;
-    border-radius: 4px;
+/* Header container with increased height */
+.header-container {
+    position: relative;
+    width: 100vw; /* Full width of the viewport */
+    height: 60vh; /* Increase height to 60% of viewport height */
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
+    overflow: hidden; /* Prevent content overflow */
 }
 
-/* Ensure page content starts after the navbar */
-.colleges-page {
-    margin-top: 70px; /* Adjust to leave space for the fixed navbar */
+/* College banner image with no space on the left */
+.colleges-banner-image {
+    width: 100vw; /* Full viewport width, ensuring no space on the left */
+    height: 100%; /* Full height of the container */
+    object-fit: cover; /* Ensure the image covers the container without distortion */
+    display: block; /* Remove inline element spacing */
 }
 
-.header {
+/* Overlay text on top of the image */
+.header-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Text color for overlay */
+    font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 20px;
+    width: auto; /* Change width to auto to prevent full width */
+    
+    padding: 0; /* Remove padding around the text */
+    /* Remove background color to eliminate highlighting */
+    background-color: transparent; /* Make sure there is no background */
+    border: none; /* Ensure no border around the text */
 }
 
-.list-group {
-    margin-top: 20px;
+/* College columns setup */
+.college-columns {
+    display: flex; /* Use flexbox to arrange columns side by side */
+    justify-content: space-between; /* Space between the columns */
 }
 
-.list-group-item {
-    padding: 15px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
+/* Each column setup */
+.college-column {
+    flex: 1; /* Each column takes equal space */
+    padding: 10px; /* Padding inside columns */
 }
 
-.college-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* College item box */
+.college-item {
+    border: 1px solid #ccc; /* Border around each college box */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Space inside the box */
+    margin-bottom: 10px; /* Space between boxes */
+    background-color: #f9f9f9; /* Light background color */
+    transition: box-shadow 0.3s; /* Transition for hover effect */
 }
 
-/* Responsive layout */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+/* Hover effect for college items */
+.college-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
 
-    .navbar-links {
-        flex-direction: column;
-    }
+/* College link styling */
+.college-link {
+    color: #1986f3; /* New color for college names (dark blue) */
+    text-decoration: none; /* Remove underline */
+    font-weight: normal; /* Ensure links are not bold */
+    cursor: pointer; /* Pointer cursor on hover */
+}
 
-    .navbar-links li {
-        margin-left: 0;
-        margin-top: 10px;
-    }
+/* Hover effect for college links */
+.college-link:hover {
+    color: #2980b9; /* Change color on hover (lighter blue) */
 }

@@ -1,84 +1,209 @@
-/* SpotRoundDetails.css */
+/* Container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0; /* Removed padding */
+}
+
+/* Title and headers */
 .college-title {
     text-align: center;
     color: #2c3e50;
-    font-size: 2.5rem; /* Increase font size */
-    margin-bottom: 20px; /* Space below the title */
+    font-size: 2.5rem;
+    margin-bottom: 10px; /* Further reduced bottom margin */
 }
 
+/* Updated college image styling */
 .college-image {
-    width: 100px; /* Adjust size as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin-top: 10px; /* Add some space above the image */
-    display: block; /* Ensure the image is on its own line */
+    width: 100%; /* Full width of the container */
+    max-width: 800px; /* Max width for large screens */
+    height: auto; /* Ensure the aspect ratio is maintained */
+    object-fit: cover; /* Image covers entire area without stretching */
+    border: 8px solid #000; /* Black border */
+    border-radius: 10px; /* Optional: round the corners */
+    display: inline-block;
+    margin-bottom: 0px; /* Removed bottom margin */
+    transition: transform 0.3s ease; /* Add transition effect */
 }
 
-.abbreviation {
-    font-size: 1.5rem; /* Slightly smaller font size for abbreviation */
-    color: #7f8c8d; /* Gray color for better contrast */
+/* Image hover effect */
+.college-image:hover {
+    transform: scale(1.05); /* Scale up the image on hover */
+}
+
+/* Navbar and image container spacing */
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin: 0; /* Removed top and bottom margin */
+}
+
+.navbar {
+    margin-bottom: 5px; /* Reduced margin below the navbar */
 }
 
 .spot-details-card {
-    border-radius: 10px; /* Rounded corners for the card */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-top: 10px; /* Ensure a small margin for content below */
 }
 
+/* Adjusting image-container margin in smaller screens for responsive behavior */
+@media (max-width: 768px) {
+    .image-container {
+        margin: 0; /* Further adjust for smaller screens */
+    }
+
+    .navbar, .spot-details-card {
+        margin-bottom: 5px; /* Adjust for consistency */
+    }
+}
+
+/* Styling for the Spot Cutoff name */
 .spot-title {
-    font-size: 1.8rem; /* Increase font size for title */
-    margin-bottom: 15px; /* Space below the title */
+    font-size: 5rem; /* Large font size for better visibility */
+    font-weight: bold; /* Make the text bold */
+    color: #e74c3c; /* Bright red color for emphasis */
+    margin-bottom: 10px; /* Small space below the title */
+    text-align: center; /* Center align the title for better presentation */
 }
 
+/* Abbreviation styling */
+.abbreviation {
+    font-size: 1.5rem;
+    color: #7f8c8d;
+}
+
+/* Basic styling for the overall card */
+.spot-details-card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+/* Cutoff and round sections */
 .cutoff-section {
-    padding: 15px; /* Add padding around cutoff sections */
-    border: 1px solid #ddd; /* Border for cutoff sections */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background for sections */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Styling for year sections */
+.year-column {
+    display: flex;
+    flex-direction: column; /* Stack the years vertically */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.year-section {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    width: 100%; /* Ensure both year sections take up full width */
 }
 
 .cutoff-year {
     font-weight: bold;
-    color: #2980b9; /* Blue color for year */
+    margin-bottom: 0.5rem; /* Optional: Adjust spacing below the year */
+    text-align: left; /* Ensure text is aligned to the left */
 }
 
-.round-title {
+/* Table styling */
+table {
+    margin: 10px 0;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px;
+}
+
+thead th {
+    background-color: #f1f1f1;
     font-weight: bold;
-    color: #c0392b; /* Dark red color for round titles */
-    margin-top: 15px; /* Space above the round title */
 }
 
-.detail-item {
-    background-color: #ffffff; /* White background for details */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 5px; /* Rounded corners */
-    margin-bottom: 10px; /* Space between items */
-    padding: 10px; /* Padding inside items */
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
 }
 
-.detail-item:hover {
-    background-color: #ecf0f1; /* Light gray on hover */
-    transition: background-color 0.3s ease; /* Smooth transition */
+tbody tr:nth-child(even) {
+    background-color: #ffffff;
 }
-/* SpotRoundDetails.css */
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+    .college-title {
+        font-size: 1.5rem;
+    }
+
+    .abbreviation {
+        font-size: 1rem;
+    }
+
+    .year-column {
+        margin-bottom: 15px;
+    }
+
+    table {
+        font-size: 0.8rem;
+    }
+}
+
+/* Arrow styling */
 .round-toggle-button {
-    display: flex;
-    align-items: center;
+    position: relative;
+    padding: 10px 20px; /* Adjust padding for a better click area */
     font-weight: bold;
-    font-size: 1.1rem; /* Increase font size for the toggle button */
-    margin-bottom: 10px; /* Space below the button */
+    color: #007bff; /* Bootstrap primary color */
+    text-decoration: none; /* Remove underline */
 }
 
-.arrow-up, .arrow-down {
-    margin-left: 8px; /* Space between text and arrow */
-    border: solid black; /* Arrow color */
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 3px;
-}
-
+.arrow-up,
 .arrow-down {
-    transform: rotate(45deg); /* Rotate to form a downward arrow */
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 10px; /* Spacing between text and arrow */
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
 }
 
 .arrow-up {
-    transform: rotate(-135deg); /* Rotate to form an upward arrow */
+    border-bottom: 7px solid #007bff; /* Color for the up arrow */
+}
+
+.arrow-down {
+    border-top: 7px solid #007bff; /* Color for the down arrow */
+}
+
+/* Adjust the button hover effect */
+.round-toggle-button:hover {
+    text-decoration: underline; /* Underline on hover for better UX */
+}
+
+/* Additional styling for button focus */
+.round-toggle-button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add custom focus shadow */
+}
+
+.content-border {
+    border: 1px solid lightgray; /* Light gray border */
+    border-radius: 8px; /* Optional: rounded corners */
+    padding: 10px; /* Reduced padding inside the border */
+    background-color: #f9f9f9; /* Optional: background color for the content area */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for better visibility */
+    margin-top: 20px; /* Added margin to create space between navbar and this section */
+}
+
+.spot-title.small-title {
+    font-size: 1.5rem; /* Reduced font size for the Spot Cutoffs title */
+    margin-bottom: 1rem; /* Adjust bottom margin for spacing */
 }

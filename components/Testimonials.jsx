@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Testimonials.css';
 
 const Testimonials = () => {
@@ -13,6 +14,7 @@ const Testimonials = () => {
         currentPosition: '',
         company: '',
         collegeName: '',
+        Contact: '',
         photoUrl: ''
     });
 
@@ -22,7 +24,7 @@ const Testimonials = () => {
 
     const fetchTestimonials = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/testimonials');
+            const response = await axios.get('http://localhost:10000/api/testimonials');
             setTestimonials(response.data);
         } catch (error) {
             console.error('Error fetching testimonials:', error);
@@ -39,7 +41,7 @@ const Testimonials = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3001/api/testimonials', newTestimonial);
+            await axios.post('http://localhost:3001/api/testimonials', newTestimonial);
             fetchTestimonials();
             setNewTestimonial({
                 name: '',
@@ -50,6 +52,7 @@ const Testimonials = () => {
                 currentPosition: '',
                 company: '',
                 collegeName: '',
+                Contact: '',
                 photoUrl: ''
             });
         } catch (error) {
@@ -58,43 +61,58 @@ const Testimonials = () => {
     };
 
     return (
-        <div className="container">
-            <div className="testimonials-container">
-                <h2>Testimonials</h2>
+        <div className="testimonials-container">
+            <div className="background-animation"></div>
+            <h1 className="main-heading">Alumni Testimonials</h1>
 
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name="name" placeholder="Your Name" value={newTestimonial.name} onChange={handleChange} required />
-                    <input type="number" name="graduationYear" placeholder="Graduation Year" value={newTestimonial.graduationYear} onChange={handleChange} required />
-                    <textarea name="testimonial" placeholder="Your Testimonial" value={newTestimonial.testimonial} onChange={handleChange} required />
-                    <input type="text" name="degree" placeholder="Degree" value={newTestimonial.degree} onChange={handleChange} required />
-                    <input type="text" name="major" placeholder="Major" value={newTestimonial.major} onChange={handleChange} required />
-                    <input type="text" name="currentPosition" placeholder="Current Position" value={newTestimonial.currentPosition} onChange={handleChange} required />
-                    <input type="text" name="company" placeholder="Company" value={newTestimonial.company} onChange={handleChange} required />
-                    <input type="text" name="college" placeholder="College" value={newTestimonial.college} onChange={handleChange} required />
-                    <input type="text" name="photoUrl" placeholder="Photo URL (optional)" value={newTestimonial.photoUrl} onChange={handleChange} />
-                    <button type="submit">Submit Testimonial</button>
-                </form>
+            <div className="row">
+                <div className="col-md-8 mx-auto">
+                    <div className="card testimonial-form">
+                        <div className="card-body">
+                            <h3 className="card-title">Submit Your Testimonial</h3>
+                            <form onSubmit={handleSubmit}>
+                                <input type="text" className="form-control" name="name" placeholder="Your Name" value={newTestimonial.name} onChange={handleChange} required />
+                                <input type="number" className="form-control" name="graduationYear" placeholder="Graduation Year" value={newTestimonial.graduationYear} onChange={handleChange} required />
+                                <textarea className="form-control" name="testimonial" placeholder="Your Testimonial" value={newTestimonial.testimonial} onChange={handleChange} required rows="3"></textarea>
+                                <input type="text" className="form-control" name="degree" placeholder="Degree" value={newTestimonial.degree} onChange={handleChange} required />
+                                <input type="text" className="form-control" name="major" placeholder="Major" value={newTestimonial.major} onChange={handleChange} required />
+                                <input type="text" className="form-control" name="currentPosition" placeholder="Current Position" value={newTestimonial.currentPosition} onChange={handleChange} required />
+                                <input type="text" className="form-control" name="company" placeholder="Company" value={newTestimonial.company} onChange={handleChange} required />
+                                <input type="text" className="form-control" name="collegeName" placeholder="College" value={newTestimonial.collegeName} onChange={handleChange} required />
+                                <input type="tel" className="form-control" name="Contact" placeholder="Enter Contact Number" value={newTestimonial.Contact} onChange={handleChange} required />
+                                <input type="text" className="form-control" name="photoUrl" placeholder="Photo URL (optional)" value={newTestimonial.photoUrl} onChange={handleChange} />
+                                <button type="submit" className="btn submit-btn">Submit Testimonial</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <h3>All Testimonials</h3>
-                <ul>
-                    {testimonials.length > 0 ? (
-                        testimonials.map((testimonial) => (
-                            <li key={testimonial._id}>
-                                <p><strong>Name:</strong> {testimonial.name}</p>
-                                <p><strong>Graduation Year:</strong> {testimonial.graduationYear}</p>
-                                <p><strong>Testimonial:</strong> {testimonial.testimonial}</p>
-                                <p><strong>Degree:</strong> {testimonial.degree}</p>
-                                <p><strong>Major:</strong> {testimonial.major}</p>
-                                <p><strong>Current Position:</strong> {testimonial.currentPosition}</p>
-                                <p><strong>Company:</strong> {testimonial.company}</p>
-                                <p><strong>College:</strong> {testimonial.college}</p>
-                                <p><strong>Photo URL:</strong> {testimonial.photoUrl}</p>
-                            </li>
-                        ))
-                    ) : (
-                        <li>No testimonials available.</li>
-                    )}
-                </ul>
+            <h2 className="testimonials-heading">All Testimonials</h2>
+            <div className="row testimonials-grid">
+                {testimonials.length > 0 ? (
+                    testimonials.map((testimonial) => (
+                        <div key={testimonial._id} className="col-md-6 mb-4">
+                            <div className="card testimonial-card">
+                                {testimonial.photoUrl && (
+                                    <img src={testimonial.photoUrl} className="card-img-top testimonial-image" alt={`${testimonial.name}'s photo`} />
+                                )}
+                                <div className="card-body">
+                                    <h5 className="card-title college-name">{testimonial.collegeName}</h5>
+                                    <h6 className="card-subtitle mb-2">{testimonial.name} : Class of {testimonial.graduationYear}</h6>
+                                    <p className="card-text testimonial-text">Feedback: {testimonial.testimonial}</p>
+                                    <p className="card-text"><small>{testimonial.degree} in {testimonial.major}</small></p>
+                                    <p className="card-text"><small>{testimonial.currentPosition} at {testimonial.company}</small></p>
+                                    <p className="card-text"><small>Contact: {testimonial.Contact}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <div className="col-12 text-center">
+                        <p>No testimonials available.</p>
+                    </div>
+                )}
             </div>
         </div>
     );

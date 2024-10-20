@@ -11,7 +11,8 @@ const CollegeDetail = () => {
   useEffect(() => {
     const fetchCollegeDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/college/details/${id}`);
+        // Use backticks for the template literal
+        const response = await fetch(`http://localhost:10000/college/details/${id}`);
         if (!response.ok) {
           throw new Error('Invalid college ID');
         }
@@ -33,11 +34,12 @@ const CollegeDetail = () => {
     return <div>Loading...</div>;
   }
 
+  // CollegeDetails component should be defined outside for better readability
   const CollegeDetails = ({ collegeData }) => {
     return (
       <div className={styles.collegeDetailsContainer}>
         <Container className="my-4" style={{ paddingTop: '100px' }}>
-          <h1 style={{ textAlign: 'center', color: '#2c3e50', fontSize: '2.5rem' }}>
+          <h1 style={{ textAlign: 'center', fontSize: '2.5rem' }}>
             {collegeData.name} ({collegeData.abbreviation})
           </h1>
 
@@ -75,7 +77,7 @@ const CollegeDetail = () => {
             </tbody>
           </table>
 
-          <h2 style={{ color: '#2c3e50' }}>Courses Offered</h2>
+          <h2>Courses Offered</h2>
           <table className={styles.coursesTable}>
             <thead>
               <tr>
@@ -93,7 +95,7 @@ const CollegeDetail = () => {
             </tbody>
           </table>
 
-          <h2 style={{ color: '#2c3e50' }}>Campus Facilities</h2>
+          <h2>Campus Facilities</h2>
           <table className={styles.facilitiesTable}>
             <thead>
               <tr>
@@ -109,7 +111,7 @@ const CollegeDetail = () => {
             </tbody>
           </table>
 
-          <h2 style={{ color: '#2c3e50' }}>Ranking</h2>
+          <h2>Ranking</h2>
           <table className={styles.rankingTable}>
             <thead>
               <tr>
@@ -129,13 +131,13 @@ const CollegeDetail = () => {
             </tbody>
           </table>
 
-          <h2 style={{ color: '#2c3e50' }}>Cutoffs</h2>
+          <h2>Cutoffs</h2>
           {Object.entries(collegeData.cutoffs).map(([exam, data]) => (
             <div key={exam}>
-              <h3 style={{ color: '#2c3e50' }}>{exam}</h3>
+              <h3>{exam}</h3>
               {Object.entries(data).map(([year, courses]) => (
                 <div key={year}>
-                  <h4 style={{ color: '#2c3e50' }}>{year}</h4>
+                  <h4>{year}</h4>
                   <table className={styles.cutoffTable}>
                     <thead>
                       <tr>
@@ -168,7 +170,7 @@ const CollegeDetail = () => {
           {/* Render additional images after the Cutoffs section */}
           {collegeData.images.length > 1 && (
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
-              <h2 style={{ color: '#2c3e50' }}>More Campus Images</h2>
+              <h2>More Campus Images</h2>
               <div className={styles.imageGallery}>
                 {collegeData.images.slice(1).map((image, index) => (
                   <img 

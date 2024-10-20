@@ -51,37 +51,63 @@
   cursor: pointer; 
 }
 
-.detailsTable {
+/* CollegeDetails.module.css */
+.detailsTable,
+.coursesTable,
+.facilitiesTable,
+.rankingTable,
+.cutoffTable {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
 }
 
-.detailsTable th {
-  background-color: #e6f7ff; 
+.detailsTable th,
+.coursesTable th,
+.facilitiesTable th,
+.rankingTable th,
+.cutoffTable th {
+  background-color: #2c3e50; /* Header background color */
+  color: #ffffff; /* Header text color */
+  padding: 12px;
+  text-align: left;
+}
+
+.detailsTable td,
+.coursesTable td,
+.facilitiesTable td,
+.rankingTable td,
+.cutoffTable td {
+  background-color: #ffffff; /* Cell background color */
+  color: #333333; /* Cell text color */
   padding: 10px;
-  text-align: left; 
+  border: 1px solid #dcdcdc; /* Light border for cells */
 }
 
-.detailsTable td {
-  border: 1px solid #ddd;
-  padding: 10px;
+h1, h2, h3, h4 {
+  color: #2c3e50; /* Color for headings */
 }
 
-.detailsTable tr:hover {
-  background-color: #f5f5f5; 
-}
-
-h1, h2 {
-  color: #bcc909; 
-}
-
-h2 {
-  margin-top: 20px; 
-}
 
 @media (max-width: 768px) {
   .collegeDetailsContainer {
     padding-top: 60px; /* Adjust for smaller screens */
   }
+}
+.collegeImage {
+  border: 2px solid #2c3e50; /* Change the color and width as needed */
+  border-radius: 8px; /* Optional: to round the corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: to add some shadow */
+  transition: transform 0.3s; /* Optional: for a smooth scaling effect */
+}
+
+.collegeImage:hover {
+  transform: scale(1.05); /* Optional: slightly scale the image on hover */
+}
+.collegeDetailsContainer {
+  border: 1px solid #dcdcdc; /* Light border color */
+  border-radius: 8px; /* Optional: for rounded corners */
+  padding: 20px; /* Padding inside the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for depth */
+  background-color: #ffffff; /* Optional: background color */
 }

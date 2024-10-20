@@ -1,119 +1,62 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
 import StartCoursesImg from '../../utils/images/start-courses-img.jpg';
 import FaqAccordion from '../../components/FaqAccordion/FaqAccordion';
-import { Card } from 'react-bootstrap';
-import Blog1Img from '../../utils/images/blog1-img.jpg';
-import Blog2Img from '../../utils/images/blog2-img.jpg';
-import Blog3Img from '../../utils/images/blog3-img.jpg';
-import ExamLogo from '../../utils/images/exam-logo.png'; // Example exam logo
-import MHT_CET_Logo from '../../utils/images/mht_cet-logo.webp'; // Example exam logo
-import CAT_Logo from '../../utils/images/CAT.webp'; // Example exam logo
 
-// Top Exams Functional Component
-const TopExams = () => {
-    // ... existing TopExams code ...
-};
+// Sample data for Top 10 Colleges of Maharashtra
+const colleges = [
+    { name: "College of Engineering Pune", established: 1854, location: "Pune", rank: 1 },
+    { name: "Vishwakarma Institute of Technology", established: 1983, location: "Pune", rank: 2 },
+    { name: "MIT World Peace University", established: 1983, location: "Pune", rank: 3 },
+    { name: "Shivaji University", established: 1962, location: "Kolhapur", rank: 4 },
+    { name: "Veermata Jijabai Technological Institute", established: 1887, location: "Mumbai", rank: 5 },
+    { name: "D.Y. Patil College of Engineering", established: 1998, location: "Pune", rank: 6 },
+    { name: "K.J. Somaiya College of Engineering", established: 1983, location: "Mumbai", rank: 7 },
+    { name: "Sardar Patel Institute of Technology", established: 1962, location: "Mumbai", rank: 8 },
+    { name: "Rajiv Gandhi Institute of Technology", established: 1992, location: "Mumbai", rank: 9 },
+    { name: "Jawaharlal Nehru Engineering College", established: 1991, location: "Aurangabad", rank: 10 }
+];
 
-// Top Colleges Section
-// Top Colleges Section
-const TopColleges = () => {
-    const [colleges, setColleges] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchColleges = async () => {
-            try {
-                // Fetch top college IDs first
-                const response = await fetch('http://localhost:3001/Topcolleges');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch college IDs');
-                }
-                const data = await response.json();
-
-                // Assuming the first item contains the college_ids
-                const collegeIds = data[0].college_ids;
-
-                // Fetch college details based on the IDs
-                const collegeDetailsResponse = await fetch(`http://localhost:3001/getCollegesByIds?ids=${collegeIds.join(',')}`);
-                if (!collegeDetailsResponse.ok) {
-                    throw new Error('Failed to fetch college details');
-                }
-                const collegeDetailsData = await collegeDetailsResponse.json();
-
-                setColleges(collegeDetailsData); // Set the college details state
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-    
-        fetchColleges();
-    }, []);
-
-    if (loading) return <p>Loading colleges...</p>;
-    if (error) return <p>Error: {error}</p>;
-
-    return (
-        <div className="container my-5">
-            <h2 className="text-center mb-4">Top 10 Colleges</h2>
-            <div className="table-responsive">
-                <table className="table table-striped align-middle">
-                    <thead>
-                        <tr>
-                            <th scope="col">Rank</th>
-                            <th scope="col">College</th>
-                            <th scope="col">Ranking</th>
-                            <th scope="col">Cutoff</th>
-                            <th scope="col">Application Deadline</th>
-                            <th scope="col">Fees</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {colleges.map((college, index) => (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>
-                                    <div>
-                                        <strong>{college.college_name}</strong>
-                                        <p className="text-muted">{college.location}</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span>{college.ranking}</span>
-                                </td>
-                                <td>{college.cutoff}</td>
-                                <td>{college.application_deadline}</td>
-                                <td>{college.fees}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
-};
-
+// Sample data for Top Exams
+const exams = [
+    { name: "MHT CET", date: "May 2025", eligibility: "Class 12th pass", url: "https://cetcell.mahacet.org/" },
+    { name: "JEE Main", date: "January & April 2025", eligibility: "Class 12th pass", url: "https://jeemain.nta.ac.in/" },
+    { name: "JEE Advanced", date: "June 2025", eligibility: "Qualify JEE Main", url: "https://jeeadv.ac.in/" },
+    { name: "CAT", date: "November 2025", eligibility: "Graduation", url: "https://iimcat.ac.in/per/g06/pub/32842/ASM/WebPortal/1/index.html?32842@@1@@1" },
+    { name: "MAT", date: "February, December 2025", eligibility: "Graduation", url: "https://mat.aima.in/" },
+    { name: "LSAT", date: "June 2025", eligibility: "Graduation", url: "https://www.lsac.org/lsat" },
+    { name: "NEET", date: "May 2025", eligibility: "Class 12th pass", url: "https://exams.nta.ac.in/NEET/" },
+    { name: "GATE", date: "February 2025", eligibility: "Graduation", url: "https://gate2025.iitr.ac.in/" },
+];
 
 // Main Home Page Component
 function Home() {
+    const handleMoreInfoClick = (url) => {
+        window.open(url, '_blank'); // Open the link in a new tab
+    };
+
     return (
         <div className='home-page'>
             <header className='h-100 min-vh-100 d-flex align-items-center text-light'>
                 <div className='container d-flex flex-column align-items-center'>
                     <h2>Welcome To</h2>
                     <h1 className='text-center fw-semibold'>Campus Connect</h1>
-                    <p>Dive into the essentials of Engineering admissions, cutoffs, and college insights. We're here to guide you through the process and clarify your doubts.</p>
-                    <p>Empowering you with the knowledge needed to make informed decisions. Stay informed and connected on your educational journey!</p>
+                    <p>
+                        Campus Connect is your comprehensive guide to exploring top colleges across the country,
+                        providing essential information on courses, fees, and admission details to help you make
+                        informed decisions about your education. Stay informed and connected on your educational journey!
+                    </p>
                     <div className='d-flex flex-column flex-sm-row align-items-center'>
                         <Link to="/courses">
-                            <button type='button' className='btn btn-danger btn-lg mx-0 mx-sm-2 my-2 my-sm-0'>Top Cities</button>
+                            <button type='button' className='btn btn-danger btn-lg mx-0 mx-sm-2 my-2 my-sm-0'>
+                                Top Cities
+                            </button>
                         </Link>
                         <Link to="/contact">
-                            <button type='button' className='btn btn-outline-light btn-lg mx-0 mx-sm-2 my-2 my-sm-0'>Contact Us</button>
+                            <button type='button' className='btn btn-outline-light btn-lg mx-0 mx-sm-2 my-2 my-sm-0'>
+                                Contact Us
+                            </button>
                         </Link>
                     </div>
                 </div>
@@ -124,9 +67,15 @@ function Home() {
                     <div className='row d-flex align-items-center justify-content-around'>
                         <div className='col-lg-5'>
                             <h2 className='text-capitalize'>2025 start with Top Cities</h2>
-                            <p><b>Education Hubs Await You :</b> Uncover the best cities for education through MHT CET. These vibrant locales are home to premier institutions and resources. Your dreams of a successful career start here. Embrace the chance to thrive in the heart of knowledge!</p>
+                            <p>
+                                <b>Education Hubs Await You:</b> Uncover the best cities for education through MHT CET.
+                                These vibrant locales are home to premier institutions and resources. Your dreams of a
+                                successful career start here. Embrace the chance to thrive in the heart of knowledge!
+                            </p>
                             <Link to="/courses">
-                                <button type='button' className='btn btn-danger btn-lg mx-0 mx-sm-2 my-2 my-sm-0'>Explore Cities</button>
+                                <button type='button' className='btn btn-danger btn-lg mx-0 mx-sm-2 my-2 my-sm-0'>
+                                    Explore Cities
+                                </button>
                             </Link>
                         </div>
                         <div className='col-lg-5 mt-5 mt-lg-0'>
@@ -136,11 +85,55 @@ function Home() {
                 </div>
             </div>
 
-            {/* Top Colleges Section */}
-            <TopColleges />
+            <div className='py-5 bg-light'>
+                <div className="container">
+                    <h2 className='text-center mb-5'>Top 10 Colleges of Maharashtra for Engineering</h2>
+                    <table className="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Established</th>
+                                <th>Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {colleges.map((college, index) => (
+                                <tr key={index} className="college-row">
+                                    <td>{college.rank}</td>
+                                    <td>{college.name}</td>
+                                    <td>{college.established}</td>
+                                    <td>{college.location}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
             {/* Top Exams Section */}
-            <TopExams />
+            <div className='py-5 bg-light'>
+                <div className="container">
+                    <h2 className='text-center mb-5'>Top Exams</h2>
+                    <div className="row justify-content-center">
+                        {exams.map((exam, index) => (
+                            <div key={index} className="col-md-4 col-lg-4 mb-4">
+                                <div className="exam-card p-3 text-center border rounded shadow-sm exam-card-hover">
+                                    <h4>{exam.name}</h4>
+                                    <p className="exam-date"><strong>Date:</strong> {exam.date}</p>
+                                    <p><strong>Eligibility:</strong> {exam.eligibility}</p>
+                                    <button
+                                        className="btn btn-primary more-info-button"
+                                        onClick={() => handleMoreInfoClick(exam.url)} // Use exam.url directly
+                                    >
+                                        More Info
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
 
             {/* FAQ Section */}
             <div className='py-5 bg-light'>

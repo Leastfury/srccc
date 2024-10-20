@@ -5,19 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // Import images
-import ArtCourseImg from '../../utils/images/art-course.jpg';
-import BusinessCourseImg from '../../utils/images/business-course.jpg';
-import ComputerScienceCourseImg from '../../utils/images/computer-science-course.jpg';
-import EducationCourseImg from '../../utils/images/education-course.jpg';
-import HealthcareCourseImg from '../../utils/images/healthcare-course.jpg';
+import mumbaiImg from '../../utils/images/mumbai.jpg';
+import puneImg from '../../utils/images/pune.jpg';
+import nagpurImg from '../../utils/images/nagpur.jpg';
+import amravatiImg from '../../utils/images/amravati.jpg';
+import nashikImg from '../../utils/images/nashik.jpg';
+import sambhajinagarImg from '../../utils/images/sambhajinagar.jpg';
 
 // Updated courses array
 const courses = [
-    { id: 1, img: ArtCourseImg, title: 'mumbai' },
-    { id: 2, img: BusinessCourseImg, title: 'pune' },
-    { id: 3, img: ComputerScienceCourseImg, title: 'nagpur' },
-    { id: 4, img: EducationCourseImg, title: 'amravati' },
-    { id: 5, img: HealthcareCourseImg, title: 'nashik' }
+    { id: 1, img: mumbaiImg, title: 'mumbai' },
+    { id: 2, img: puneImg, title: 'pune' },
+    { id: 3, img: nagpurImg, title: 'nagpur' },
+    { id: 4, img: amravatiImg, title: 'amravati' },
+    { id: 5, img: nashikImg, title: 'nashik' },
+    { id: 6, img: sambhajinagarImg, title: 'sambhajinagar' }
 ];
 
 function Courses() {
@@ -29,10 +31,11 @@ function Courses() {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get(`http://localhost:3001/college/${city.toLowerCase()}`);
+            // Fixed: Use backticks for the URL
+            const response = await axios.get(`http://localhost:10000/college/${city.toLowerCase()}`);
 
             console.log('Colleges fetched:', response.data); // This will show you what data is being fetched
-    
+
             if (response.data && Array.isArray(response.data)) {
                 navigate('/colleges', { state: { colleges: response.data, city } });
             } else {
